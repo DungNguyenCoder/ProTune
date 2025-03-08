@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="200.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dungnguyen.protunefinal.controllers.ControlController">
+   <children>
+      <Slider layoutX="14.0" layoutY="61.0" prefHeight="18.0" prefWidth="354.0" />
+      <HBox layoutX="14.0" layoutY="114.0" prefHeight="26.0" prefWidth="354.0" spacing="50.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleRandomClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons/shuffle_off.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handlePreviousClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons/previous.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handlePlayClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons/pause.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleNextClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons/next.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleRepeatClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons/repeat_off.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="498.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/icons/volume.png" />
+         </image>
+      </ImageView>
+      <Slider layoutX="443.0" layoutY="62.0" />
+   </children>
+</AnchorPane>
