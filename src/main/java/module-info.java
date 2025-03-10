@@ -10,4 +10,5 @@ module dungnguyen.protunefinal {
     opens dungnguyen.protunefinal.controllers to javafx.fxml;
     opens dungnguyen.protunefinal.views.fxml to javafx.fxml;
     exports dungnguyen.protunefinal;
+    exports dungnguyen.protunefinal.controllers;
 }

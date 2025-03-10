@@ -1,7 +1,7 @@
 package dungnguyen.protunefinal;
 
-import dungnguyen.protunefinal.controllers.MainController;
 import dungnguyen.protunefinal.controllers.LoginController;
+import dungnguyen.protunefinal.controllers.MainController;
 import dungnguyen.protunefinal.controllers.SignupController;
 import dungnguyen.protunefinal.utilz.Constants;
 import javafx.application.Application;
@@ -30,8 +30,8 @@ public class MainApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(Constants.LOGIN_SCREEN));
         Pane root = fxmlLoader.load();
 
-        LoginController controller = fxmlLoader.getController();
-        controller.setMainApp(this);
+        LoginController loginController = fxmlLoader.getController();
+        loginController.setMainApp(this);
 
         stage.setScene(new Scene(root));
         stage.show();
@@ -40,18 +40,18 @@ public class MainApp extends Application {
     public void showSignUpScreen() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(Constants.SIGNUP_SCREEN));
         Pane root = fxmlLoader.load();
-        SignupController controller = fxmlLoader.getController();
-        controller.setMainApp(this);
+        SignupController signupController = fxmlLoader.getController();
+        signupController.setMainApp(this);
         stage.setScene(new Scene(root));
         stage.show();
     }
 
-    public void showHomeScreen() throws IOException {
+    public void showMainScreen() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(Constants.HOME_SCREEN));
         Pane root = fxmlLoader.load();
-        MainController controller = fxmlLoader.getController();
-        controller.setMainApp(this);
-        controller.setUsername(currentUsername);
+        MainController mainController = fxmlLoader.getController();
+        mainController.setMainApp(this);
+        mainController.setUsername(currentUsername);
         stage.setScene(new Scene(root));
         stage.show();
     }

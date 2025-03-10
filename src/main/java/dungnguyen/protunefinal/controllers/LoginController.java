@@ -2,18 +2,18 @@ package dungnguyen.protunefinal.controllers;
 
 import dungnguyen.protunefinal.MainApp;
 import dungnguyen.protunefinal.utilz.Constants;
+import dungnguyen.protunefinal.utilz.OpenLink;
+import dungnguyen.protunefinal.utilz.ShowAlert;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URI;
 
 public class LoginController {
     private MainApp mainApp;
@@ -35,7 +35,7 @@ public class LoginController {
         if(authenticate(username, password)) {
             try {
                 mainApp.setCurrentUsername(getName(username));
-                mainApp.showHomeScreen();
+                mainApp.showMainScreen();
             }
             catch (IOException e) {
                 e.printStackTrace();
@@ -46,17 +46,17 @@ public class LoginController {
             System.out.println("Invalid username or password");
             usernameField.clear();
             passwordField.clear();
-            showAlert("Error", "Invalid username or password!", Alert.AlertType.ERROR);
+            new ShowAlert("Error", "Invalid username or password!", Alert.AlertType.ERROR);
         }
     }
 
     private boolean authenticate(String username, String password) {
-        File file = new File(Constants.USERS_LOGIN);
+        File file = new File(Constants.USERS_LOGIN_DATA);
         if(!file.exists()) {
             System.out.println("File not found");
             return false;
         }
-        try (BufferedReader reader = new BufferedReader(new FileReader(Constants.USERS_LOGIN))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(Constants.USERS_LOGIN_DATA))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] userData = line.split(" ");
@@ -75,8 +75,8 @@ public class LoginController {
         return false;
     }
 
-    private String getName(String username) {
-        File file = new File(Constants.USERS_LOGIN);
+    public String getName(String username) {
+        File file = new File(Constants.USERS_LOGIN_DATA);
         if(!file.exists()) {
             System.out.println("File not found");
             return "";
@@ -108,29 +108,12 @@ public class LoginController {
 
     @FXML
     private void handleLinkFacebookButtonClick(ActionEvent event) throws IOException {
-        openLink(Constants.FACEBOOK_LINK);
+        new OpenLink(Constants.FACEBOOK_LINK);
     }
 
     @FXML
     private void handleLinkGithubButtonClick(ActionEvent event) throws IOException {
-        openLink(Constants.GITHUB_LINK);
+        new OpenLink(Constants.GITHUB_LINK);
     }
 
-
-    private void openLink(String link) {
-        try {
-            Desktop.getDesktop().browse(new URI(link));
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void showAlert(String title, String message, Alert.AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 }
