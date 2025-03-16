@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static dungnguyen.protunefinal.utilz.Constants.*;
+
 public class MainApp extends Application {
 
     private static Stage stage;
@@ -27,7 +29,7 @@ public class MainApp extends Application {
     }
 
     public void showLoginScreen() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(Constants.LOGIN_SCREEN));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(LOGIN_SCREEN));
         Pane root = fxmlLoader.load();
 
         LoginController loginController = fxmlLoader.getController();
@@ -38,7 +40,7 @@ public class MainApp extends Application {
     }
 
     public void showSignUpScreen() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(Constants.SIGNUP_SCREEN));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(SIGNUP_SCREEN));
         Pane root = fxmlLoader.load();
         SignupController signupController = fxmlLoader.getController();
         signupController.setMainApp(this);
@@ -47,7 +49,7 @@ public class MainApp extends Application {
     }
 
     public void showMainScreen() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(Constants.HOME_SCREEN));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(HOME_SCREEN));
         Pane root = fxmlLoader.load();
         MainController mainController = fxmlLoader.getController();
         mainController.setMainApp(this);

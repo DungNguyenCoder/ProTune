@@ -4,6 +4,7 @@ module dungnguyen.protunefinal {
     requires jdk.compiler;
     requires java.desktop;
     requires java.sql;
+    requires javafx.media;
 
 
     opens dungnguyen.protunefinal to javafx.fxml;

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dungnguyen.protunefinal.controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@login-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dungnguyen.protunefinal.controllers.LoginController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,8 +21,8 @@
             <Image url="@../../images/Img/Title.png" />
          </image>
       </ImageView>
-      <TextField fx:id="usernameField" layoutX="697.0" layoutY="240.0" prefHeight="32.0" prefWidth="410.0" />
-      <PasswordField fx:id="passwordField" layoutX="697.0" layoutY="318.0" prefHeight="32.0" prefWidth="410.0" />
+      <TextField fx:id="usernameField" layoutX="697.0" layoutY="240.0" prefHeight="32.0" prefWidth="410.0" style="-fx-background-radius: 45;" />
+      <PasswordField fx:id="passwordField" layoutX="697.0" layoutY="318.0" prefHeight="32.0" prefWidth="410.0" style="-fx-background-radius: 45;" />
       <Label layoutX="697.0" layoutY="171.0" text="Sign in your account" textFill="ORANGE">
          <font>
             <Font name="System Bold" size="20.0" />
@@ -38,17 +38,20 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button fx:id="loginButton" layoutX="848.0" layoutY="378.0" mnemonicParsing="false" onAction="#handleLoginButtonClick" prefHeight="32.0" prefWidth="94.0" text="Log in">
+      <Button fx:id="loginButton" layoutX="848.0" layoutY="378.0" mnemonicParsing="false" onAction="#handleLoginButtonClick" prefHeight="46.0" prefWidth="107.0" text="Log in">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Button>
-      <Label layoutX="835.0" layoutY="446.0" text="New user?" />
-      <Button fx:id="signUpButton" layoutX="909.0" layoutY="441.0" mnemonicParsing="false" onAction="#handleSignUpButtonClick" text="Sign up" />
-      <Label layoutX="756.0" layoutY="517.0" prefHeight="30.0" prefWidth="75.0" text="Contact:">
+      <Label layoutX="800.0" layoutY="452.0" text="New user?">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Button fx:id="linkFacebookButton" graphicTextGap="0.0" layoutX="860.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleLinkFacebookButtonClick" prefHeight="32.0" prefWidth="82.0" style="-fx-background-radius: 45;" text="Facebook" />
-      <Button fx:id="linkGitHubButton" layoutX="961.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleLinkGithubButtonClick" prefHeight="32.0" prefWidth="82.0" style="-fx-background-radius: 45;" text="Github" />
+      <Button fx:id="signUpButton" layoutX="909.0" layoutY="441.0" mnemonicParsing="false" onAction="#handleSignUpButtonClick" text="Sign up" />
+      <Label layoutX="759.0" layoutY="519.0" prefHeight="30.0" prefWidth="82.0" text="Contact:">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Button fx:id="linkFacebookButton" graphicTextGap="0.0" layoutX="851.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleLinkFacebookButtonClick" prefHeight="36.0" prefWidth="107.0" style="-fx-background-radius: 45;" text="Facebook" />
+      <Button fx:id="linkGitHubButton" layoutX="976.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleLinkGithubButtonClick" prefHeight="36.0" prefWidth="89.0" style="-fx-background-radius: 45;" text="Github" />
    </children>
 </AnchorPane>

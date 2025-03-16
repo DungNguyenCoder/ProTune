@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 
 import java.io.*;
 
+import static dungnguyen.protunefinal.utilz.Constants.*;
+
 public class SignupController {
 
     private MainApp mainApp;
@@ -70,7 +72,7 @@ public class SignupController {
     }
 
     public boolean registerUser(String firstName, String lastName, String username, String password) {
-        File file = new File(Constants.USERS_LOGIN_DATA);
+        File file = new File(USERS_LOGIN_DATA);
         if(isUsernameExists(username, file)) {
             firstnameField.clear();
             lastnameField.clear();

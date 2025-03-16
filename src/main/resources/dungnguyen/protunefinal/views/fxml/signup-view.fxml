@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dungnguyen.protunefinal.controllers.SignupController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@signup-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dungnguyen.protunefinal.controllers.SignupController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,9 +21,9 @@
             <Image url="@../../images/Img/Title.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="697.0" layoutY="327.0">
+      <AnchorPane layoutX="697.0" layoutY="284.0">
          <children>
-            <TextField fx:id="usernameField" layoutY="26.0" prefHeight="32.0" prefWidth="410.0" />
+            <TextField fx:id="usernameField" layoutY="26.0" prefHeight="32.0" prefWidth="410.0" style="-fx-background-radius: 45;" />
             <Label text="Username" textFill="ORANGE">
                <font>
                   <Font name="System Bold" size="16.0" />
@@ -31,9 +31,9 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="697.0" layoutY="385.0">
+      <AnchorPane layoutX="697.0" layoutY="356.0">
          <children>
-            <PasswordField fx:id="passwordField" layoutY="26.0" prefHeight="32.0" prefWidth="410.0" />
+            <PasswordField fx:id="passwordField" layoutY="26.0" prefHeight="32.0" prefWidth="410.0" style="-fx-background-radius: 45;" />
             <Label layoutX="2.0" text="Password" textFill="ORANGE">
                <font>
                   <Font name="System Bold" size="16.0" />
@@ -41,25 +41,20 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="697.0" layoutY="165.0" text="Sign up" textFill="ORANGE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
       <Button fx:id="signUpButton" layoutX="935.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleSignUpButtonClick" text="Sign up" />
-      <AnchorPane layoutX="697.0" layoutY="211.0" prefHeight="58.0" prefWidth="410.0">
+      <AnchorPane layoutX="697.0" layoutY="140.0" prefHeight="58.0" prefWidth="410.0">
          <children>
             <Label text="First name" textFill="ORANGE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="firstnameField" layoutY="26.0" prefHeight="32.0" prefWidth="410.0" />
+            <TextField fx:id="firstnameField" layoutY="26.0" prefHeight="32.0" prefWidth="410.0" style="-fx-background-radius: 45;" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="697.0" layoutY="269.0">
+      <AnchorPane layoutX="697.0" layoutY="212.0">
          <children>
-            <TextField fx:id="lastnameField" layoutY="26.0" prefHeight="32.0" prefWidth="410.0" />
+            <TextField fx:id="lastnameField" layoutY="26.0" prefHeight="32.0" prefWidth="410.0" style="-fx-background-radius: 45;" />
             <Label layoutX="2.0" text="Last name" textFill="ORANGE">
                <font>
                   <Font name="System Bold" size="16.0" />
@@ -67,9 +62,9 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="697.0" layoutY="443.0">
+      <AnchorPane layoutX="697.0" layoutY="428.0">
          <children>
-            <PasswordField fx:id="confirmPasswordField" layoutY="26.0" prefHeight="32.0" prefWidth="410.0" />
+            <PasswordField fx:id="confirmPasswordField" layoutY="26.0" prefHeight="32.0" prefWidth="410.0" style="-fx-background-radius: 45;" />
             <Label layoutX="2.0" text="Confirm password" textFill="ORANGE">
                <font>
                   <Font name="System Bold" size="16.0" />

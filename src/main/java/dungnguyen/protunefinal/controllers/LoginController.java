@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static dungnguyen.protunefinal.utilz.Constants.*;
+
 public class LoginController {
     private MainApp mainApp;
 
@@ -51,12 +53,12 @@ public class LoginController {
     }
 
     private boolean authenticate(String username, String password) {
-        File file = new File(Constants.USERS_LOGIN_DATA);
+        File file = new File(USERS_LOGIN_DATA);
         if(!file.exists()) {
             System.out.println("File not found");
             return false;
         }
-        try (BufferedReader reader = new BufferedReader(new FileReader(Constants.USERS_LOGIN_DATA))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(USERS_LOGIN_DATA))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] userData = line.split(" ");
@@ -76,7 +78,7 @@ public class LoginController {
     }
 
     public String getName(String username) {
-        File file = new File(Constants.USERS_LOGIN_DATA);
+        File file = new File(USERS_LOGIN_DATA);
         if(!file.exists()) {
             System.out.println("File not found");
             return "";
@@ -108,12 +110,12 @@ public class LoginController {
 
     @FXML
     private void handleLinkFacebookButtonClick(ActionEvent event) throws IOException {
-        new OpenLink(Constants.FACEBOOK_LINK);
+        new OpenLink(FACEBOOK_LINK);
     }
 
     @FXML
     private void handleLinkGithubButtonClick(ActionEvent event) throws IOException {
-        new OpenLink(Constants.GITHUB_LINK);
+        new OpenLink(GITHUB_LINK);
     }
 
 }
