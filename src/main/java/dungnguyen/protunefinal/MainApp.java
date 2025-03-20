@@ -3,7 +3,6 @@ package dungnguyen.protunefinal;
 import dungnguyen.protunefinal.controllers.LoginController;
 import dungnguyen.protunefinal.controllers.MainController;
 import dungnguyen.protunefinal.controllers.SignupController;
-import dungnguyen.protunefinal.utilz.Constants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -60,10 +59,6 @@ public class MainApp extends Application {
 
     public void setCurrentUsername(String currentUsername) {
         this.currentUsername = currentUsername;
-    }
-
-    public String getCurrentUsername() {
-        return currentUsername;
     }
 
     public static void main(String[] args) {

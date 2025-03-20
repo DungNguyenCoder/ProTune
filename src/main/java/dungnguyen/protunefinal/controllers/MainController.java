@@ -1,14 +1,11 @@
 package dungnguyen.protunefinal.controllers;
 
 import dungnguyen.protunefinal.MainApp;
-import dungnguyen.protunefinal.models.PlaylistData;
 import dungnguyen.protunefinal.models.SongData;
-import dungnguyen.protunefinal.utilz.Constants;
 import dungnguyen.protunefinal.utilz.ShowAlert;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -23,8 +20,7 @@ import static dungnguyen.protunefinal.utilz.Constants.*;
 
 public class MainController {
     private MainApp mainApp;
-    private ArrayList<SongData> songData = new ArrayList<>();
-    private ArrayList<PlaylistData> playlists = new ArrayList<>();
+    public static ArrayList<SongData> songData = new ArrayList<>();
 
     @FXML
     private BorderPane mainPane;
@@ -78,7 +74,7 @@ public class MainController {
     }
 
     private void loadSongsFromFile() {
-        File file = new File(Constants.SONG_DATA);
+        File file = new File(SONG_DATA);
         if (!file.exists()) return;
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
@@ -94,70 +90,72 @@ public class MainController {
         }
     }
 
-    private void loadPlaylists() {
-        File file = new File(PLAYLIST_DATA);
-        if (!file.exists()) return;
+//    private void loadPlaylists() {
+//        File file = new File(PLAYLIST_DATA);
+//        if (!file.exists()) return;
+//
+//        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+//            String line;
+//            while ((line = reader.readLine()) != null) {
+//                String[] parts = line.split("\\|");
+//                if (parts.length > 1) {
+//                    String username = parts[0];
+//                    String playlistName = parts[1];
+//                    PlaylistData playlist = new PlaylistData(username, playlistName);
+//
+//                    for (int i = 1; i < parts.length; i++) {
+//                        String[] songData = parts[i].split(",");
+//                        if (songData.length == 6) {
+//                            SongData song = new SongData(songData[0], songData[1], songData[2], songData[3], songData[4], songData[5]);
+//                            playlist.addSong(song);
+//                        }
+//                    }
+//                    playlists.add(playlist);
+//                }
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split("\\|");
-                if (parts.length > 1) {
-                    String username = parts[0];
-                    PlaylistData playlist = new PlaylistData(username);
-
-                    for (int i = 1; i < parts.length; i++) {
-                        String[] songData = parts[i].split(",");
-                        if (songData.length == 6) {
-                            SongData song = new SongData(songData[0], songData[1], songData[2], songData[3], songData[4], songData[5]);
-                            playlist.addSong(song);
-                        }
-                    }
-                    playlists.add(playlist);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void savePlaylists() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(PLAYLIST_DATA))) {
-            for (PlaylistData playlist : playlists) {
-                StringBuilder sb = new StringBuilder();
-                sb.append(playlist.getUsername());
-                for (SongData song : playlist.getSongs()) {
-                    sb.append("|").append(song.getSongName()).append(",").append(song.getArtist())
-                            .append(",").append(song.getPlaylist()).append(",").append(song.getThumbnailPath())
-                            .append(",").append(song.getFilePath());
-                }
-                writer.write(sb.toString());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void addSongToPlaylist(String username, SongData song) {
-        for (PlaylistData playlist : playlists) {
-            if (playlist.getUsername().equals(username)) {
-                playlist.addSong(song);
-                savePlaylists();
-                return;
-            }
-        }
-
-        PlaylistData newPlaylist = new PlaylistData(username);
-        newPlaylist.addSong(song);
-        playlists.add(newPlaylist);
-        savePlaylists();
-    }
+//    private void savePlaylists() {
+//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(PLAYLIST_DATA))) {
+//            for (PlaylistData playlist : playlists) {
+//                StringBuilder sb = new StringBuilder();
+//                sb.append(playlist.getUsername());
+//                for (SongData song : playlist.getSongs()) {
+//                    sb.append("|").append(song.getSongName()).append(",").append(song.getArtist())
+//                            .append(",").append(song.getPlaylist()).append(",").append(song.getThumbnailPath())
+//                            .append(",").append(song.getFilePath());
+//                }
+//                writer.write(sb.toString());
+//                writer.newLine();
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    public void addSongToPlaylist(String username, String playlistName, SongData song) {
+//        for (PlaylistData playlist : playlists) {
+//            if (playlist.getUsername().equals(username)) {
+//                playlist.addSong(song);
+//                savePlaylists();
+//                return;
+//            }
+//        }
+//
+//        PlaylistData newPlaylist = new PlaylistData(username, playlistName);
+//        newPlaylist.addSong(song);
+//        playlists.add(newPlaylist);
+//        savePlaylists();
+//    }
 
     @FXML
     private void initialize() throws IOException {
+        loadSongsFromFile();
+        
         FXMLLoader homeLoader = new FXMLLoader(getClass().getResource(HOME));
-        Parent homeParent = homeLoader.load();
+        homeLoader.load();
         homeController = homeLoader.getController();
 
         FXMLLoader controlLoader = new FXMLLoader(getClass().getResource(CONTROL_VIEW));
@@ -165,25 +163,24 @@ public class MainController {
         controlController = controlLoader.getController();
 
         if (controlController != null) {
-            homeController.setControlController(controlController);
             controlController.setHomeController(homeController);
+            homeController.setControlController(controlController);
         } else {
             System.out.println("Control controller is null");
         }
 
         HBox hBox = new HBox(musicControls);
-        hBox.setAlignment(Pos.CENTER_RIGHT);
-        hBox.setPadding(new Insets(0,200,0,0));
+        hBox.setAlignment(Pos.CENTER);
+//        hBox.setPadding(new Insets(10,0,10,0));
         mainPane.setBottom(hBox);
 
-        loadSongsFromFile();
     }
 
     @FXML
     void handleHomeButton(ActionEvent event) {
-        HomeController homeController = loadPage(HOME);
+        homeController = loadPage(HOME);
+        homeController.setControlController(controlController);
         homeController.setSongList(songData);
-        controlController.setSongList(songData);
     }
 
     @FXML
@@ -202,15 +199,20 @@ public class MainController {
     void handleMyLocalButton(ActionEvent event) {
         LocalController localController = loadPage(LOCAL);
         localController.setMainController(this);
+        localController.setControlController(controlController);
         localController.setSongList(songData);
-        controlController.setSongList(songData);
     }
 
-    @FXML
-    void handlePlaylistButton(ActionEvent event) {
-        PlaylistController playlistController = loadPage(PLAYLIST);
-        playlistController.setPlaylists(playlists);
-    }
+//    @FXML
+//    void handlePlaylistButton(ActionEvent event) {
+//        PlaylistController playlistController = loadPage(PLAYLIST);
+//        if(playlistController != null) {
+//            playlistController.setMainController(this);
+//        }
+//        else {
+//            System.out.println("Playlist controller is null");
+//        }
+//    }
 
     @FXML
     void handleLogoutButton(ActionEvent event) throws IOException {

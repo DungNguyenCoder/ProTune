@@ -1,0 +1,65 @@
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom right, #fff3e0, #ffcc80);
+}
+
+.text-field, .password-field {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+    -fx-border-color: #ffa726;
+    -fx-border-radius: 25px;
+    -fx-padding: 12px;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
+}
+
+.button {
+    -fx-background-color: #ff9800;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 25px;
+    -fx-padding: 10px 25px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 3);
+}
+
+.button:hover {
+    -fx-background-color: #f57c00;
+}
+
+.label {
+    -fx-text-fill: #e65100;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 18px;
+}
+
+#contactLabel {
+    -fx-text-fill: #e65100;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+#linkFacebookButton, #linkGitHubButton {
+    -fx-background-color: #ffe0b2;
+    -fx-text-fill: #e65100;
+    -fx-border-radius: 20px;
+    -fx-padding: 8px 20px;
+    -fx-font-size: 14px;
+}
+
+#linkFacebookButton:hover {
+    -fx-background-color: #ffcc80;
+}
+
+#linkGitHubButton:hover {
+    -fx-background-color: #ffb74d;
+}
+
+#firstnameField, #lastnameField, #usernameField, #passwordField, #confirmPasswordField {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ffa726;
+    -fx-border-radius: 25px;
+    -fx-padding: 12px;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
+}

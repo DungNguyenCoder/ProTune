@@ -3,4 +3,16 @@
 <?import javafx.scene.control.ListView?>
 
 
-<ListView fx:id="playlistView" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dungnguyen.protunefinal.controllers.PlaylistController" />
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="dungnguyen.protunefinal.controllers.PlaylistController">
+    <ListView fx:id="playlistView" prefHeight="200" prefWidth="300"/>
+    <ListView fx:id="songListView" prefHeight="200" prefWidth="300"/>
+    <HBox spacing="10">
+        <Button text="Add" onAction="#addPlaylist" />
+        <Button text="Edit" onAction="#editPlaylist" />
+        <Button text="Delete" onAction="#deletePlaylist" />
+    </HBox>
+</VBox>

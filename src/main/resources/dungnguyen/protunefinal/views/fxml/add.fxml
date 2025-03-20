@@ -2,66 +2,48 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity"
-      maxWidth="-Infinity"
-      minHeight="-Infinity"
-      minWidth="-Infinity"
-      prefHeight="400.0"
-      prefWidth="600.0"
-      spacing="10.0"
-      stylesheets="@add.css"
-      xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="dungnguyen.protunefinal.controllers.AddController">
-   <children>
-      <TextField
-              fx:id="songNameField"
-              layoutX="75.0"
-              layoutY="237.0"
-              promptText="Song name" />
-      <TextField
-              fx:id="artistField"
-              layoutX="238.0"
-              layoutY="78.0"
-              promptText="Artist" />
-      <TextField
-              fx:id="playlistField"
-              layoutX="179.0"
-              layoutY="128.0"
-              promptText="Playlist" />
-      <TextField
-              fx:id="thumbnailField"
-              layoutX="179.0"
-              layoutY="32.0"
-              promptText="Thumbnail" />
-      <HBox
-              prefWidth="300.0">
-         <children>
-            <TextField
-                    fx:id="linkMP3Field"
-                    prefHeight="50.0"
-                    prefWidth="410.0"
-                    promptText="Link MP3" />
-            <Button
-                    mnemonicParsing="false"
-                    onAction="#handleChooseFileButton"
-                    prefHeight="51.0"
-                    prefWidth="128.0"
-                    text="Link MP3" />
-         </children>
-      </HBox>
-      <Button
-              alignment="CENTER"
-              contentDisplay="TOP"
-              layoutX="41.0"
-              layoutY="122.0"
-              mnemonicParsing="false"
-              onAction="#handleAddSongButton"
-              prefHeight="51.0"
-              prefWidth="602.0"
-              text="                                           Add song" />
-   </children>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="600.0" spacing="10.0" stylesheets="@add.css" xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="dungnguyen.protunefinal.controllers.AddController">
+    <children>
+        <TextField fx:id="songNameField" layoutX="75.0" layoutY="237.0" promptText="Song name"/>
+        <TextField fx:id="artistField" layoutX="238.0" layoutY="78.0" promptText="Artist"/>
+        <TextField fx:id="playlistField" layoutX="179.0" layoutY="128.0" promptText="Playlist"/>
+        <GridPane prefHeight="35.0" prefWidth="600.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <TextField fx:id="thumbnailField" prefHeight="50.0" prefWidth="410.0" promptText="Thumbnail"/>
+                <Button mnemonicParsing="false" onAction="#handleThumbnailButton" prefHeight="51.0" prefWidth="152.0"
+                        text="Thumbnail" GridPane.columnIndex="1"/>
+            </children>
+        </GridPane>
+        <GridPane prefHeight="35.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <TextField fx:id="linkMP3Field" prefHeight="50.0" prefWidth="410.0" promptText="Link MP3"/>
+                <Button mnemonicParsing="false" onAction="#handleChooseFileButton" prefHeight="51.0" prefWidth="128.0"
+                        text="Link MP3" GridPane.columnIndex="1"/>
+            </children>
+        </GridPane>
+        <Button alignment="CENTER" contentDisplay="TOP" layoutX="41.0" layoutY="122.0" mnemonicParsing="false"
+                onAction="#handleAddSongButton" prefHeight="51.0" prefWidth="602.0"
+                text="                                           Add song"/>
+    </children>
 </VBox>

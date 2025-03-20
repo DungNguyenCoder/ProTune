@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.ListView?>
 
-<ListView fx:id="songListView" prefHeight="400.0" prefWidth="600.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dungnguyen.protunefinal.controllers.HomeController">
-    <items>
-        <FXCollections fx:factory="observableArrayList" />
-    </items>
-</ListView>
+
+<ListView stylesheets="@home.css" fx:controller="dungnguyen.protunefinal.controllers.HomeController" fx:id="songListView" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1"
+          xmlns:fx="http://javafx.com/fxml/1"/>

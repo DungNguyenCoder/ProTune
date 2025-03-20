@@ -10,7 +10,7 @@ public class Constants {
 
     public static final String USERS_LOGIN_DATA = "data/usersdata.txt";
     public static final String SONG_DATA = "data/song.txt";
-    public static final String PLAYLIST_DATA = "data/playlistdata.txt";
+    public static final String PLAYLIST_DATA = "data/playlistdata.json";
 
     public static final String CONTROL_VIEW = "/dungnguyen/protunefinal/views/fxml/control-view.fxml";
     public static final String HOME = "/dungnguyen/protunefinal/views/fxml/home.fxml";

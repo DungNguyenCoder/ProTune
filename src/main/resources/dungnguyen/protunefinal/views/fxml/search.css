@@ -1,0 +1,27 @@
+#songNameField {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+    -fx-prompt-text-fill: #ffa726;
+    -fx-border-color: #ffa726;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+Button {
+    -fx-background-color: #ffa726;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-padding: 5px 15px;
+    -fx-border-radius: 5px;
+}
+
+Button:hover {
+    -fx-background-color: #ffcc80;
+}
+
+#searchSongListView {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ffa726;
+    -fx-border-width: 2px;
+    -fx-text-fill: #333333;
+}

@@ -1,0 +1,39 @@
+#songListView {
+    -fx-background-color: #fff8e1;
+    -fx-border-color: #ffcc80;
+    -fx-border-width: 2px;
+    -fx-padding: 10px;
+}
+
+#songListView .list-cell {
+    -fx-text-fill: #e65100;
+    -fx-font-size: 18px;
+    -fx-padding: 10px 15px;
+}
+
+#songListView .list-cell:selected {
+    -fx-background-color: #ffcc80;
+    -fx-text-fill: #ffffff;
+}
+
+#progressSlider {
+    -fx-control-inner-background: #e0e0e0;
+    -fx-accent: #ff9800;
+}
+
+#volumeSlider {
+    -fx-control-inner-background: #f5f5f5;
+    -fx-accent: #4caf50;
+}
+
+HBox ImageView {
+    -fx-cursor: hand;
+}
+
+#randomButton, #playButton, #repeatButton {
+    -fx-opacity: 0.8;
+}
+
+#randomButton:hover, #playButton:hover, #repeatButton:hover {
+    -fx-opacity: 1.0;
+}

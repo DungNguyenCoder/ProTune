@@ -1,7 +1,6 @@
 package dungnguyen.protunefinal.controllers;
 
 import dungnguyen.protunefinal.models.SongData;
-import dungnguyen.protunefinal.utilz.Constants;
 import javafx.fxml.FXML;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
@@ -20,9 +19,9 @@ import static dungnguyen.protunefinal.utilz.Constants.*;
 public class ControlController {
 
     @FXML
-    private Slider progressSlider;
+    private Slider progressSlider = new Slider();
     @FXML
-    private Slider volumeSlider;
+    private Slider volumeSlider = new Slider();
     @FXML
     private ImageView playButton;
     @FXML
@@ -31,32 +30,36 @@ public class ControlController {
     private ImageView randomButton;
 
     private HomeController homeController;
+    private LocalController localController;
     private MediaPlayer mediaPlayer;
-    private List<SongData> songList;
+    private List<SongData> songList = MainController.songData;
     private int currentIndex = 0;
+    private boolean isSeeking = false;
 
     private boolean isRepeat = false;
     private boolean isRandom = false;
 
+
     public ControlController() {
 
-    }
-
-    public void setSongList(List<SongData> songList) {
-        this.songList = songList;
     }
 
     private void setupListeners() {
         if (mediaPlayer == null) return;
 
         mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
-            progressSlider.setValue(newTime.toSeconds());
+            if (!isSeeking) {
+                progressSlider.setValue(newTime.toSeconds());
+            }
         });
+
+        progressSlider.setOnMousePressed(event -> isSeeking = true);
 
         progressSlider.setOnMouseReleased(event -> {
             if (mediaPlayer != null) {
                 mediaPlayer.seek(Duration.seconds(progressSlider.getValue()));
             }
+            isSeeking = false;
         });
 
         mediaPlayer.setOnReady(() -> {
@@ -73,15 +76,18 @@ public class ControlController {
                 mediaPlayer.setVolume(newVal.doubleValue() / 100);
             }
         });
-
-        mediaPlayer.setOnReady(() -> {
-            progressSlider.setMax(mediaPlayer.getTotalDuration().toSeconds());
-        });
     }
 
     public void playSongAtIndex(int index) {
-        if (songList == null || songList.isEmpty() || index < 0 || index >= songList.size()) {
+        System.out.println("playSongAtIndex: " + index);
+        System.out.println("songList: " + songList.size());
+        if (index < 0 || index >= songList.size()) {
             System.out.println("index is out of bounds");
+            return;
+        }
+
+        if(songList == null || songList.isEmpty()) {
+            System.out.println("songList is null");
             return;
         }
 
@@ -106,16 +112,21 @@ public class ControlController {
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
 
+        if(homeController != null) {
+            homeController.highlightCurrentSong(index);
+        }
+
+        if(localController != null) {
+            localController.highlightCurrentSong(index);
+        }
+
         setupListeners();
     }
 
 
     @FXML
     public void handlePlayClick(MouseEvent mouseEvent) {
-        if (mediaPlayer == null) {
-            System.out.println("HomeController not initialized");
-            return;
-        }
+        System.out.println("handlePlayClick: " + mouseEvent);
 
         if(mediaPlayer == null) {
             System.out.println("No media player available");
@@ -134,12 +145,14 @@ public class ControlController {
 
     @FXML
     public void handleRandomClick(MouseEvent mouseEvent) {
+        System.out.println("handleRandomClick: " + mouseEvent);
         isRandom = !isRandom;
         randomButton.setImage(new Image(getClass().getResourceAsStream(isRandom ? SUFFLE_ON : SUFFLE_OFF)));
     }
 
     @FXML
     public void handleRepeatClick(MouseEvent mouseEvent) {
+        System.out.println("handleRepeatClick: " + mouseEvent);
         isRepeat = !isRepeat;
         repeatButton.setImage(new Image(getClass().getResourceAsStream(isRepeat ? REPEAT_ON : REPEAT_OFF)));
 
@@ -157,6 +170,7 @@ public class ControlController {
 
     @FXML
     public void handlePreviousClick(MouseEvent mouseEvent) {
+        System.out.println("handlePreviousClick: " + mouseEvent);
         if (songList == null || songList.isEmpty()) return;
 
         currentIndex = (currentIndex - 1 + songList.size()) % songList.size();
@@ -166,6 +180,7 @@ public class ControlController {
 
     @FXML
     public void handleNextClick(MouseEvent mouseEvent) {
+        System.out.println("handleNextClick: " + mouseEvent);
         if (songList == null || songList.isEmpty()) return;
 
         if (isRandom) {
@@ -177,25 +192,21 @@ public class ControlController {
         playSongAtIndex(currentIndex);
     }
 
-    public int getCurrentIndex() {
-        return currentIndex;
-    }
-
-    public void setCurrentIndex(int currentIndex) {
-        this.currentIndex = currentIndex;
-    }
-
     public void setHomeController(HomeController homeController) {
-        this.homeController = homeController;
-    }
-
-    public void setMediaPlayer(MediaPlayer mediaPlayer) {
-        this.mediaPlayer = mediaPlayer;
-        if(this.mediaPlayer == null) {
-            System.out.println("mediaPlayer is null");
+        if(homeController == null) {
+            System.out.println("homeController is null");
             return;
         }
-        setupListeners();
-        System.out.println("mediaPlayer initialized");
+        this.homeController = homeController;
+        System.out.println("homeController set");
+    }
+
+    public void setLocalController(LocalController localController) {
+        if(localController == null) {
+            System.out.println("localController is null");
+            return;
+        }
+        this.localController = localController;
+        System.out.println("localController set");
     }
 }

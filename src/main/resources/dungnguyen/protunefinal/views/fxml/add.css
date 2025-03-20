@@ -1,0 +1,74 @@
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom right, #fff3e0, #ffcc80);
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e65100;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-alignment: center-left;
+}
+
+.button:hover {
+    -fx-background-color: #ffcc80;
+}
+
+.vbox {
+    -fx-background-color: #ffe0b2;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+}
+
+#username {
+    -fx-text-fill: #e65100;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+#songNameField, #artistField, #playlistField, #thumbnailField, #linkMP3Field {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+    -fx-prompt-text-fill: #ffa726;
+    -fx-border-color: #ffa726;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+Button {
+    -fx-background-color: #ffa726;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-padding: 5px 15px;
+    -fx-border-radius: 5px;
+}
+
+Button:hover {
+    -fx-background-color: #ffcc80;
+}
+
+HBox {
+    -fx-spacing: 20px;
+}
+
+#linkMP3Field {
+    -fx-pref-width: 300px;
+}
+
+/*Button[onAction="#handleChooseFileButton"] {*/
+/*    -fx-pref-width: 300px;*/
+/*}*/
+
+/*Button[onAction="#handleAddSongButton"] {*/
+/*    -fx-background-color: #ffa726;*/
+/*    -fx-text-fill: #ffffff;*/
+/*    -fx-font-size: 14px;*/
+/*    -fx-padding: 5px 15px;*/
+/*    -fx-border-radius: 5px;*/
+/*    -fx-alignment: center;*/
+/*}*/
+
+/*Button[onAction="#handleAddSongButton"]:hover {*/
+/*    -fx-background-color: #ffcc80;*/
+/*}*/
