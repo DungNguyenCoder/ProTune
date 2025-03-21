@@ -51,4 +51,12 @@ public class SongData {
     public void setSongName(String songName) {
         this.songName = songName;
     }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public void setPlaylist(String playlist) {
+        this.playlist = playlist;
+    }
 }

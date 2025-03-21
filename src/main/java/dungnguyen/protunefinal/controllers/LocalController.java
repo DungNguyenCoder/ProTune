@@ -4,6 +4,8 @@ import dungnguyen.protunefinal.models.SongData;
 import dungnguyen.protunefinal.utilz.SongListCell;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.layout.GridPane;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -50,7 +52,70 @@ public class LocalController {
                         System.out.println("controller is null");
                     }
                 }
+
+                myLocalListView.setOnContextMenuRequested(this::showContextMenu);
             });
+        }
+    }
+
+    private void showContextMenu(ContextMenuEvent contextMenuEvent) {
+        int selectedIndex = myLocalListView.getSelectionModel().getSelectedIndex();
+        if(selectedIndex < 0) {
+            System.out.println("no local selected");
+            return;
+        }
+
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem editItem = new MenuItem("Edit");
+        MenuItem deleteItem = new MenuItem("Delete");
+
+        editItem.setOnAction(event -> editSong(selectedIndex));
+        deleteItem.setOnAction(event -> deleteSong(selectedIndex));
+
+        contextMenu.getItems().addAll(editItem, deleteItem);
+        contextMenu.show(myLocalListView, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY());
+    }
+
+    private void editSong(int selectedIndex) {
+        SongData song = myLocalListView.getItems().get(selectedIndex);
+        SongData oldSong = new SongData(song.getSongName(), song.getArtist(), song.getPlaylist(), song.getThumbnailPath(), song.getFilePath(), song.getUploader());
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Edit song");
+        dialog.setHeaderText("Edit song information");
+
+        GridPane grid = new GridPane();
+        TextField titleField = new TextField(song.getSongName());
+        TextField artistField = new TextField(song.getArtist());
+        TextField playlistField = new TextField(song.getPlaylist());
+
+        grid.addRow(0, new Label("New song name:"), titleField);
+        grid.addRow(1, new Label("New artist:"), artistField);
+        grid.addRow(2, new Label("New playlist:"), playlistField);
+
+        dialog.getDialogPane().setContent(grid);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        dialog.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                song.setSongName(titleField.getText());
+                song.setArtist(artistField.getText());
+                song.setPlaylist(playlistField.getText());
+
+//
+//                System.out.println("---");
+//                System.out.println(oldSong);
+//                System.out.println("---");
+//                System.out.println(song);
+                myLocalListView.refresh();
+                mainController.updateSongData(oldSong, song);
+            }
+        });
+    }
+
+    private void deleteSong(int selectedIndex) {
+        SongData song = myLocalListView.getItems().remove(selectedIndex);
+        if (song != null) {
+            mainController.removeSongData(song);
         }
     }
 

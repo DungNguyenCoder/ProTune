@@ -86,11 +86,6 @@ public class ControlController {
             return;
         }
 
-        if(songList == null || songList.isEmpty()) {
-            System.out.println("songList is null");
-            return;
-        }
-
         currentIndex = index;
         SongData selectedSong = songList.get(index);
         if (selectedSong == null) {

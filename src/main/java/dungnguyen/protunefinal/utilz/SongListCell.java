@@ -18,7 +18,6 @@ public class SongListCell extends ListCell<SongData> {
     private final BorderPane borderPane = new BorderPane();
 
     public SongListCell() {
-        // Set margin để ảnh không bị sát mép
         BorderPane.setMargin(imageView, new Insets(5, 20, 5, 10));
     }
 
@@ -29,7 +28,6 @@ public class SongListCell extends ListCell<SongData> {
             setText(null);
             setGraphic(null);
         } else {
-            // Load hình ảnh bài hát
             File imageFile = new File("image/" + song.getThumbnailPath());
             if (imageFile.exists()) {
                 Image image = new Image(imageFile.toURI().toString());
@@ -40,11 +38,9 @@ public class SongListCell extends ListCell<SongData> {
                 imageView.setImage(null);
             }
 
-            // Cập nhật text
             songNameLabel.setText(song.getSongName());
             artistLabel.setText(song.getArtist());
 
-            // Căn chỉnh giao diện
             VBox textBox = new VBox(10,songNameLabel, artistLabel);
             borderPane.setLeft(textBox);
             borderPane.setRight(imageView);

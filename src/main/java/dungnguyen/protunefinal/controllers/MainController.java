@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
@@ -17,6 +18,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 import static dungnguyen.protunefinal.utilz.Constants.*;
+import static dungnguyen.protunefinal.utilz.LoadSave.deleteSongFromFile;
+import static dungnguyen.protunefinal.utilz.LoadSave.updateSongInFile;
 
 public class MainController {
     private MainApp mainApp;
@@ -177,26 +180,26 @@ public class MainController {
     }
 
     @FXML
-    void handleHomeButton(ActionEvent event) {
+    void handleHomeButton(MouseEvent event) {
         homeController = loadPage(HOME);
         homeController.setControlController(controlController);
         homeController.setSongList(songData);
     }
 
     @FXML
-    void handleAddSongButton(ActionEvent event) {
+    void handleAddSongButton(MouseEvent event) {
         AddController addSongController = loadPage(ADD);
         addSongController.setMainController(this);
     }
 
     @FXML
-    void handleSearchButton(ActionEvent event) {
+    void handleSearchButton(MouseEvent event) {
         SearchController searchSongController = loadPage(SEARCH);
         searchSongController.setMainController(this);
     }
 
     @FXML
-    void handleMyLocalButton(ActionEvent event) {
+    void handleMyLocalButton(MouseEvent event) {
         LocalController localController = loadPage(LOCAL);
         localController.setMainController(this);
         localController.setControlController(controlController);
@@ -215,7 +218,35 @@ public class MainController {
 //    }
 
     @FXML
-    void handleLogoutButton(ActionEvent event) throws IOException {
+    void handleLogoutButton(MouseEvent event) throws IOException {
         mainApp.showLoginScreen();
     }
+
+    public void updateSongData(SongData oldSong, SongData updatedSong) {
+        for (int i = 0; i < songData.size(); i++) {
+            SongData song = songData.get(i);
+            if (song.getSongName().equals(oldSong.getSongName()) && song.getArtist().equals(oldSong.getArtist())) {
+                updateSongInFile(oldSong, updatedSong);
+                songData.set(i, updatedSong);
+                System.out.println("Updated song: " + updatedSong.getSongName());
+                return;
+            }
+        }
+        System.out.println("Song not found for update: " + updatedSong.getSongName());
+    }
+
+    public void removeSongData(SongData songToRemove) {
+        boolean removed = songData.removeIf(song ->
+                song.getSongName().equals(songToRemove.getSongName()) &&
+                        song.getArtist().equals(songToRemove.getArtist())
+        );
+        if (removed) {
+            deleteSongFromFile(songToRemove);
+            System.out.println("Removed song: " + songToRemove.getSongName());
+        } else {
+            System.out.println("Song not found for removal: " + songToRemove.getSongName());
+        }
+    }
+
+
 }
