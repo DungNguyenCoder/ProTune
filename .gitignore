@@ -8,6 +8,12 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/
+.mvn/
+mvnw
+mvnw.cmd
+ProTuneFinal.iml
+
 *.iws
 *.iml
 *.ipr
