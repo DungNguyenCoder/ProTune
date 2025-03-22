@@ -98,9 +98,9 @@ ProTune/
 
 ## Diagram UML
 
-![UML Diagram](UML/UML Diagram.drawio.png)
+![UML Diagram](UML/UML%20Diagram.drawio.png)
 
-![Activity Diagram](UML/Activity Diagram.drawio.png)
+![Activity Diagram](UML/Activity%20Diagram.drawio.png)
 
 ## Installation
 
