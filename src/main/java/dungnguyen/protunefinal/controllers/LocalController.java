@@ -7,9 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.GridPane;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class LocalController {
@@ -101,11 +98,6 @@ public class LocalController {
                 song.setArtist(artistField.getText());
                 song.setPlaylist(playlistField.getText());
 
-//
-//                System.out.println("---");
-//                System.out.println(oldSong);
-//                System.out.println("---");
-//                System.out.println(song);
                 myLocalListView.refresh();
                 mainController.updateSongData(oldSong, song);
             }

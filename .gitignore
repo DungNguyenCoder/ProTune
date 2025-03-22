@@ -10,6 +10,7 @@ target/
 .idea/libraries/
 .idea/
 .mvn/
+lib/
 mvnw
 mvnw.cmd
 ProTuneFinal.iml

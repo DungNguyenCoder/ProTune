@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import javafx.scene.input.MouseEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -109,12 +110,12 @@ public class LoginController {
     }
 
     @FXML
-    private void handleLinkFacebookButtonClick(ActionEvent event) throws IOException {
+    void handleLinkFacebookButtonClick(MouseEvent event) throws IOException {
         new OpenLink(FACEBOOK_LINK);
     }
 
     @FXML
-    private void handleLinkGithubButtonClick(ActionEvent event) throws IOException {
+    void handleLinkGithubButtonClick(MouseEvent event) throws IOException {
         new OpenLink(GITHUB_LINK);
     }
 

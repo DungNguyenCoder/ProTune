@@ -2,6 +2,7 @@ package dungnguyen.protunefinal.controllers;
 
 import dungnguyen.protunefinal.models.SongData;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,6 +29,10 @@ public class ControlController {
     private ImageView repeatButton;
     @FXML
     private ImageView randomButton;
+    @FXML
+    private Label volumeLabel;
+    @FXML
+    private Label timeLabel;
 
     private HomeController homeController;
     private LocalController localController;
@@ -50,11 +55,21 @@ public class ControlController {
         mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
             if (!isSeeking) {
                 progressSlider.setValue(newTime.toSeconds());
+                updateTimeLabel(newTime, mediaPlayer.getTotalDuration());
             }
         });
 
-        progressSlider.setOnMousePressed(event -> isSeeking = true);
+        mediaPlayer.setOnReady(() -> {
+            progressSlider.setMax(mediaPlayer.getTotalDuration().toSeconds());
+            updateTimeLabel(mediaPlayer.getCurrentTime(), mediaPlayer.getTotalDuration());
+        });
 
+        mediaPlayer.setOnPlaying(() -> {
+            progressSlider.setMax(mediaPlayer.getTotalDuration().toSeconds());
+            updateTimeLabel(mediaPlayer.getCurrentTime(), mediaPlayer.getTotalDuration());
+        });
+
+        progressSlider.setOnMousePressed(event -> isSeeking = true);
         progressSlider.setOnMouseReleased(event -> {
             if (mediaPlayer != null) {
                 mediaPlayer.seek(Duration.seconds(progressSlider.getValue()));
@@ -62,20 +77,29 @@ public class ControlController {
             isSeeking = false;
         });
 
-        mediaPlayer.setOnReady(() -> {
-            progressSlider.setMax(mediaPlayer.getTotalDuration().toSeconds());
-        });
-
-        mediaPlayer.setOnPlaying(() -> {
-            progressSlider.setMax(mediaPlayer.getTotalDuration().toSeconds());
-        });
-
         volumeSlider.setValue(50);
+        volumeLabel.setText("50%");
         volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (mediaPlayer != null) {
                 mediaPlayer.setVolume(newVal.doubleValue() / 100);
             }
+            volumeLabel.setText(String.format("%.0f%%", newVal.doubleValue()));
         });
+    }
+
+    private void updateTimeLabel(Duration currentTime, Duration totalDuration) {
+        if (timeLabel == null) return;
+
+        String currentTimeStr = formatTime(currentTime);
+        String totalTimeStr = formatTime(totalDuration);
+        timeLabel.setText(currentTimeStr + " / " + totalTimeStr);
+    }
+
+    private String formatTime(Duration duration) {
+        if (duration == null || duration.toSeconds() <= 0) return "00:00";
+        int minutes = (int) duration.toMinutes();
+        int seconds = (int) duration.toSeconds() % 60;
+        return String.format("%02d:%02d", minutes, seconds);
     }
 
     public void playSongAtIndex(int index) {
@@ -116,6 +140,16 @@ public class ControlController {
         }
 
         setupListeners();
+
+        mediaPlayer.setOnEndOfMedia(() -> {
+            if (isRepeat) {
+                mediaPlayer.seek(Duration.ZERO);
+                mediaPlayer.play();
+            }
+            else {
+                handleNextClick(null);
+            }
+        });
     }
 
 
@@ -180,10 +214,15 @@ public class ControlController {
 
         if (isRandom) {
             Random rand = new Random();
-            currentIndex = rand.nextInt(songList.size());
+            int newIndex;
+            do {
+                newIndex = rand.nextInt(songList.size());
+            } while (newIndex == currentIndex && songList.size() > 1);
+            currentIndex = newIndex;
         } else {
             currentIndex = (currentIndex + 1) % songList.size();
         }
+
         playSongAtIndex(currentIndex);
     }
 
