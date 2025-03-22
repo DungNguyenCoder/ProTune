@@ -29,7 +29,7 @@ public class SearchController {
     void handleSearchButton(ActionEvent event) {
         String searchText = songNameField.getText();
         if(!searchText.isEmpty()) {
-            loadSongsFromFile();
+            searchSong();
         }
         else {
             new ShowAlert("Error","Missing field", Alert.AlertType.ERROR);
@@ -40,7 +40,7 @@ public class SearchController {
         this.mainController = mainController;
     }
 
-    private void loadSongsFromFile() {
+    private void searchSong() {
         File file = new File(Constants.SONG_DATA);
         if (!file.exists()) return;
         searchSongListView.getItems().clear();
